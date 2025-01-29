@@ -29,6 +29,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install tool with dependencies
       run: |
+        apt-get install -y libegl-dev # install dependency for PyQt6
         pip install .
     - name: Test 
       run: | # run both examples with all output printed to the terminal
