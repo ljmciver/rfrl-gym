@@ -4,8 +4,12 @@
 name: Python package
 
 on: # run this on every push and pull request on all branches
-  push
-  pull_request
+  push:
+    branches:
+      - '*'  
+  pull_request:
+    branches:
+      - '*'  
 
 jobs:
   build:
