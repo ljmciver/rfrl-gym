@@ -1,0 +1,31 @@
+# This workflow will install the tool with dependencies and then run the examples as tests with output to the terminal
+# It will run jobs in the two latest versions of Ubuntu with different python versions
+
+name: Python package
+
+on: # run this on every push and pull request on all branches
+  push
+  pull_request
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true # cancel all jobs if one job in the matrix fails
+      matrix: # run a job on each combintation of os and python versions
+        os: [ubuntu-24.04, ubuntu-22.04]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }} in ${{ matrix.os }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install tool with dependencies
+      run: |
+        pip install .
+    - name: Test 
+      run: | # run both examples with all output printed to the terminal
+       python scripts/preview_scenario.py -m abstract -s test_scenario_terminal.json
+       python scripts/preview_scenario.py -m iq -s test_scenario_terminal.json
