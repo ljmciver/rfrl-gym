@@ -2,7 +2,7 @@
     "environment": 
     {
 	    "num_channels": 10,
-	    "max_steps": 100,
+	    "max_steps": 10,
 	    "observation_mode": "classify",
 	    "reward_mode": "jam",
         "target_entity": "fixed_hop_freq_1",
