@@ -17,8 +17,8 @@ jobs:
       fail-fast: true # cancel all jobs if one job in the matrix fails
       matrix: # run a job on each combintation of os and python versions
         os: [ubuntu-24.04, ubuntu-22.04]
-        # use the available python versions (v3.7.0 is not included in json) : https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
-        python-version: ["3.7.1", "3.8.0", "3.9.0", "3.10.0", "3.11.0", "3.12.0", "3.13.0"]
+        # use the available python versions for os versions (nothing older than v3.10 is available) : https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+        python-version: ["3.10.0", "3.11.0", "3.12.0", "3.13.0"]
         
     runs-on: ${{ matrix.os }}
     steps:
